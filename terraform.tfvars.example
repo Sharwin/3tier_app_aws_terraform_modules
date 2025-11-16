@@ -1,0 +1,64 @@
+# ==============================================================================
+# Terraform Variables Configuration Example
+# ==============================================================================
+# Copy this file to terraform.tfvars and fill in your actual values
+# DO NOT commit terraform.tfvars to version control (contains sensitive data)
+# ==============================================================================
+
+# ------------------------------------------------------------------------------
+# AWS Region
+# ------------------------------------------------------------------------------
+aws_region = "us-east-1"
+
+# ------------------------------------------------------------------------------
+# Project Configuration
+# ------------------------------------------------------------------------------
+project_name = "bootcamp-microblog"
+environment  = "dev"
+
+# ------------------------------------------------------------------------------
+# Networking - Existing VPC and Subnets
+# ------------------------------------------------------------------------------
+# Replace with your actual VPC ID (Bootcamp VPC 'main')
+vpc_id = "vpc-0123456789abcdef0"
+
+# Replace with your actual public subnet IDs (for ALB)
+public_subnet_ids = [
+  "subnet-0123456789abcdef0",  # public-us-east-1a
+  "subnet-0123456789abcdef1",  # public-us-east-1b
+  "subnet-0123456789abcdef2",  # public-us-east-1c
+]
+
+# Replace with your actual private subnet IDs (for EC2, RDS, EFS)
+private_subnet_ids = [
+  "subnet-0123456789abcdef3",  # private-us-east-1a
+  "subnet-0123456789abcdef4",  # private-us-east-1b
+  "subnet-0123456789abcdef5",  # private-us-east-1c
+]
+
+# ------------------------------------------------------------------------------
+# RDS Database Configuration
+# ------------------------------------------------------------------------------
+db_name           = "microblog_db"
+db_username       = "admin"
+db_password       = "ChangeThisToASecurePassword123!"  # IMPORTANT: Use a strong password!
+db_instance_class = "db.t2.micro"
+
+# ------------------------------------------------------------------------------
+# EC2 Application Configuration
+# ------------------------------------------------------------------------------
+instance_type        = "t2.micro"
+asg_min_size         = 2
+asg_max_size         = 4
+asg_desired_capacity = 2
+
+# ------------------------------------------------------------------------------
+# Common Tags
+# ------------------------------------------------------------------------------
+common_tags = {
+  Project     = "bootcamp-microblog"
+  Environment = "dev"
+  ManagedBy   = "terraform"
+  Owner       = "YourName"
+}
+
